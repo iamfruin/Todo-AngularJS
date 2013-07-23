@@ -11,8 +11,17 @@
     <link href="content/bootstrap.min.css" rel="stylesheet" media="screen">
   </head>
   <body>
+    <h2>Todo</h2>
     <div ng-controller="TodoController">
-      {{totalTodos}}
+      <ul>
+        <li ng-repeat="todo in todos">
+          <span>{{todo.text}}</span>
+        </li>
+      </ul>
+      <form ng-submit="addTodo()">
+        <input type="text" ng-model="todoText" placeholder="add new todo here" />
+        <input type="submit" value="add" />
+      </form>
     </div>    
   </body>
 </html>
