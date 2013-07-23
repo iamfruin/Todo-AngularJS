@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app>
+  <head>
+    <title>Todo List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="lib/angularjs/angular.min.js"></script>
+    <script src="js/controllers.js"></script>
+
+    <link href="lib/Twitter.Bootstrap/Content/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <h2>Todo</h2>
+    <div ng-controller="TodoController">
+      <div>
+        <input type="text" ng-model="query" placeholder="filter">
+      </div>
+      <ul>
+        <li ng-repeat="todo in todos | filter:query">
+          <span>{{todo.description}}</span>
+        </li>
+      </ul>
+      <form ng-submit="addTodo()">
+        <input type="text" ng-model="todoText" placeholder="add new todo here">
+        <input type="submit" value="add">
+      </form>
+    </div>    
+  </body>
+</html>
