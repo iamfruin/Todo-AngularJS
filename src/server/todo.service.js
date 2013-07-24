@@ -1,28 +1,29 @@
-var restify = require('restify');
-var server = restify.createServer({
-	name: 'todolist',
-	version: '1.0.0'
-});
-server.use(restify.bodyParser());
+var express = require('express');
+var app = express();
 
-var items =  [
+app.use(express.methodOverride());
+var allowCrossDomain = function(req, res, next){
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+	res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With');
+	if ('OPTIONS' == req.method) {
+		res.send(200);
+	} else {
+		next();
+	};
+};
+app.use(allowCrossDomain);
+
+var items = [
 		{id: 1, description: 'get paid'},
 		{id: 2, description: 'get groceries'},
 		{id: 3, description: 'get laid'},
 		];
 
-function getItems (req, res, next) {
+app.get('/items', function(req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Methods", "GET");
-	res.header("Access-Control-Allow-Headers", "X-Requested-With");
-	res.header("Access-Control-Max-Age", "86400");
-	res.contentType = 'json';
-	res.send(200, items);
-	return next();
-};
+  	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  	res.json(items);
+});
 
-server.get('/items', getItems);
-
-server.listen(8080, function () {
-	console.log('%s listening at %s', server.name, server.url);
-})
+app.listen(process.env.PORT || 8080);

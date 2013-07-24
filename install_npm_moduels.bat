@@ -1,4 +1,4 @@
 @echo Installing npm packages
 npm install http-server
-npm install restify
+npm install express
 @echo Finished npm node packages
