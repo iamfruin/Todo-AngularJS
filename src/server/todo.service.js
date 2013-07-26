@@ -13,16 +13,21 @@ var allowCrossDomain = function(req, res, next){
 	};
 };
 app.use(allowCrossDomain);
+app.use(express.bodyParser());
 
 var items = [
-		{id: 1, description: 'get paid'},
-		{id: 2, description: 'get groceries'},
-		{id: 3, description: 'get laid'},
+		{description: 'get paid'},
+		{description: 'get groceries'},
+		{description: 'get laid'},
 		];
 
 app.get('/items', function(req, res) {
-	res.header("Access-Control-Allow-Origin", "*");
-  	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  	res.json(items);
+});
+
+app.post('/items', function(req, res){
+	console.log(req.body);
+	items.push(req.body);
   	res.json(items);
 });
 
