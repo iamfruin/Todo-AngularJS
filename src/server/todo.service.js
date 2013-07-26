@@ -16,9 +16,9 @@ app.use(allowCrossDomain);
 app.use(express.bodyParser());
 
 var items = [
-		{description: 'get paid'},
-		{description: 'get groceries'},
-		{description: 'get laid'},
+		{id: 1, description: 'get paid'},
+		{id: 2, description: 'get groceries'},
+		{id: 3, description: 'get laid'},
 		];
 
 app.get('/items', function(req, res) {
@@ -27,7 +27,9 @@ app.get('/items', function(req, res) {
 
 app.post('/items', function(req, res){
 	console.log(req.body);
-	items.push(req.body);
+	var newItem = req.body;
+	newItem.id = items.length + 1;
+	items.push(newItem);
   	res.json(items);
 });
 
