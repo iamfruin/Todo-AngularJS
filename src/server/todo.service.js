@@ -3,9 +3,6 @@ var app = express();
 
 var mongojs = require('mongojs');
 var db = mongojs('tododb', ['items']);
-db.items.save({description: 'get paid'});
-db.items.save({description: 'get groceries'});
-db.items.save({description: 'get laid'});
 
 app.use(express.methodOverride());
 var allowCrossDomain = function(req, res, next){
