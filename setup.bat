@@ -4,7 +4,9 @@
 @echo Installing NodeJS...
 cinst nodejs.install
 @echo Finished installing NodeJS
+@echo Installing MongoDB...
+cinst mongodb
+@echo Finished installing MongoDB
 @echo Installing npm packages
-npm install restify
-npm install connect
+install_npm_modules
 @echo Finished npm node packages

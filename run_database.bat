@@ -1,0 +1,1 @@
+C:\gb.MongoDB\bin\mongod.exe --dbpath H:\MongoDB\data

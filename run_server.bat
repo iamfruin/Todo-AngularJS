@@ -1,1 +1,2 @@
-% node src/server/todo.service.js
+node -v
+node src/server/todo.service.js

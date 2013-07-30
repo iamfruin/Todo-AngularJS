@@ -1,6 +1,12 @@
 var express = require('express');
 var app = express();
 
+var mongojs = require('mongojs');
+var db = mongojs('tododb', ['items']);
+db.items.save({description: 'get paid'});
+db.items.save({description: 'get groceries'});
+db.items.save({description: 'get laid'});
+
 app.use(express.methodOverride());
 var allowCrossDomain = function(req, res, next){
 	res.header('Access-Control-Allow-Origin', '*');
@@ -15,22 +21,21 @@ var allowCrossDomain = function(req, res, next){
 app.use(allowCrossDomain);
 app.use(express.bodyParser());
 
-var items = [
-		{id: 1, description: 'get paid'},
-		{id: 2, description: 'get groceries'},
-		{id: 3, description: 'get laid'},
-		];
-
 app.get('/items', function(req, res) {
-  	res.json(items);
+	db.items.find(function(err, docs) {
+		console.log(docs);
+		res.json(docs);
+	});  	
 });
 
 app.post('/items', function(req, res){
 	console.log(req.body);
 	var newItem = req.body;
-	newItem.id = items.length + 1;
-	items.push(newItem);
-  	res.json(items);
+	db.items.save(newItem);
+  	db.items.find(function(err, docs) {
+		console.log(docs);
+		res.json(docs);
+	});  	
 });
 
 app.listen(process.env.PORT || 8080);
