@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="todoListApp">
   <head>
     <title>Todo-AngularJS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,31 +25,25 @@
           <a class="brand" href="#">Todo-AngularJS</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li ng-class="{'active':getClass('/todo')"><a href="#/todo">Home</a></li>
+              <li ng-class="{'active':getClass('/contact')"><a href="#/contact">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
-    <div class="container" ng-controller="TodoController">
-      <div>
-        <input type="text" ng-model="query" placeholder="filter">
-      </div>
-      <ul>
-        <li ng-repeat="todo in todos | filter:query">
-          <span>{{todo.description}}</span>
-        </li>
-      </ul>
-      <form ng-submit="addTodo()">
-        <input type="text" ng-model="todoText" placeholder="add new todo here">
-        <button class="btn btn-primary" type="button">Add</button>
-      </form>
-    </div>  
-    <script src="lib/jquery/jquery-1.9.1.min.js"></script>  
-    <script src="lib/angularjs/angular.min.js"></script>
-    <script src="js/controllers.js"></script>
+    <!-- Placeholder for views -->
+    <div ng-view=""></div>
+
+    <!-- 3rd Party Libs -->
+    <script src="scripts/angularjs/angular.min.js"></script>
+    <script src="scripts/jquery/jquery-1.9.1.min.js"></script> 
+    <script src="scripts/bootstrap/bootstrap.min.js"></script> 
+
+    <!-- App Libs -->
+    <script src="app/app.js"></script>
+    <script src="app/controllers/controllers.js"></script>
+    <script src="app/services/services.js"></script>
   </body>
 </html>
