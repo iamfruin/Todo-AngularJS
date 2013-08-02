@@ -7,7 +7,7 @@ app.controller('TodoController', function ($scope, TodoItemService){
 	}	
 
 	$scope.addTodo = function(){		
-		//$scope.todos = TodoItemService.addTodoItem({description:$scope.todoText});
+		$scope.todos = TodoItemService.addTodoItem({description:$scope.todoText});
 		$scope.todoText = '';
 	};
 });
