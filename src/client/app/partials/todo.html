@@ -2,9 +2,10 @@
   <div>
     <input type="text" ng-model="query" placeholder="filter">
   </div>
-  <ul>
+  <ul class="unstyled">
     <li ng-repeat="todo in todos | filter:query">
-      <span>{{todo.description}}</span>
+      <input type="checkbox" ng-model="todo.done">
+      <span class="done-{{todo.done}}">{{todo.description}}</span>
     </li>
   </ul>
   <form ng-submit="addTodo()">

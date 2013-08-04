@@ -4,7 +4,7 @@ app.service('TodoItemService', function ($http){
 			console.log(response);
 			return response.data;
 		});
-		return promise;		
+		return promise;
 	};
 
 	this.addTodoItem = function(todoItem) {
@@ -13,5 +13,5 @@ app.service('TodoItemService', function ($http){
 			return response.data;
 		});
 		return promise;
-	};	
+	};
 });
